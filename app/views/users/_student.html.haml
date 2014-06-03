@@ -1,0 +1,15 @@
+.container
+	%table.table
+		%thead
+			%th= "Course Name"
+			%th= "Description"
+			%th= "Location"
+			%th= "Start date"
+			%th= "End Date"
+		.tbody
+		- @cohorts.each do |a|
+			%td= t.cohort_id
+			%td= t.accepted
+			%td= "Start Date"
+			%td= "End Date"
+			%td= "Description"

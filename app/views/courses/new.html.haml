@@ -1,0 +1,10 @@
+Create a course
+%br
+= form_for @course, url: courses_path, method: :post do |f|
+	Name of course:
+	= f.text_field :name
+	%br
+	Description:
+	= f.text_area :description
+	%br
+	= f.submit "Create Course"

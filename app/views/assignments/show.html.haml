@@ -1,0 +1,27 @@
+.container
+	- if current_user.instructor?
+		= link_to "Edit", assignment_path
+	%h3= @assignment.title
+	%br
+	%p= @assignment.description
+	%br
+	%br
+	%h4 Homework Submissions
+	- if current_user.instructor?	
+		%ul
+			- @assignment.submissions.each do |s|
+				%li= link_to s.work_url, assignment_submission_path(@assignment, s)
+				%br
+	%br
+	= link_to "Submit an assignment", new_assignment_submission_path(assignment_id: @assignment.id)
+	%br
+	= form_for @new_comment, method: :post do |f|
+		= f.hidden_field :commentable_id, value: @assignment.id
+		= f.hidden_field :commentable_type, value: "Assignment"
+		= f.text_field :content
+		= f.submit
+	%br
+	%br
+	- @assignment.comments.each do |c|
+		%p= c.content
+		%p= c.user_id

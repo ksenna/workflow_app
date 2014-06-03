@@ -1,0 +1,10 @@
+.container
+	Create an assignment
+	%br
+	= form_for @assignment, url: assignments_path, method: :post do |f|
+		Title:
+		= f.text_field :title
+		Description:
+		= f.text_area :description
+		%br
+		= f.submit "Create Assignment"

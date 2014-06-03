@@ -1,0 +1,10 @@
+Create a location
+%br
+= form_for @location, url: locations_path, method: :post do |f|
+	City:
+	= f.text_field :city
+	%br
+	State:
+	= f.text_field :state
+	%br
+	= f.submit "Create Location"
