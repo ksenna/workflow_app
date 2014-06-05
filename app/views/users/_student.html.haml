@@ -1,0 +1,27 @@
+.container
+	%h4 Your Account Information
+	- if @user.first_name.present?
+		Name: #{@user.first_name}
+	-else
+		Email: #{@user.email}
+	%br
+	%br
+	%h4 Your Cohorts
+	%table.table
+		%thead
+			%th= "Course Name"
+			%th= "Description"
+			%th= "Location"
+			%th= "Start date"
+			%th= "End Date"
+		.tbody
+		- @cohorts.each do |c|
+			%td= c.course.name
+			%td= c.course.description
+			%td= c.start_date
+			%td= "End Date"
+			%td= "Description"
+	%br
+	%br
+	- @user.admissions.each do |a|
+		= a.cohort_id

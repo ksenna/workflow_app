@@ -1,1 +1,31 @@
-_admin.html.haml
+%h3 Cohort Assignments
+%br
+%button.btn.btn-primary.btn-lg{"data-target" => "#new_assignment_modal", "data-toggle" => "modal"} Add An Assignment
+%br
+%br
+- @cohort.assignments.each do |a|
+	- if a.nil?
+		%p You have no assignments
+	-else
+		= link_to a.title, a
+		%br
+		%p= a.description
+%br
+%br
+%h3 Cohort Students
+%button.btn.btn-primary.btn-lg{"data-target" => "#new_student_modal", "data-toggle" => "modal"} Add A Student
+%br
+%br
+#new_assignment_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "new_assignment_modalLabel", :role => "dialog", :tabindex => "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+				%h4#new_assignment_modalLabel.modal-title Add an assignment
+			.modal-body
+				= form_for Assignment.new do |f|
+					= f.hidden_field :cohort_id, value: @cohort.id
+					= render 'assignments/form', f: f
+			.modal-footer
+				%button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+				%button.btn.btn-primary{:type => "button"} Save Assignments
