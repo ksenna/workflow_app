@@ -1,0 +1,15 @@
+.container
+	%h1 The #{@cohort.location.city} #{@cohort.course.name} Cohort Main Page
+	%br
+	%p Location: #{@cohort.location.city}, #{@cohort.location.state} 
+	%br
+	%p Start Date: #{@cohort.start_date}
+	%br
+	- if current_user.admin?
+	  = render 'admin'
+	- elsif current_user.instructor?
+	  = render 'instructor'
+	- elsif current_user.student?
+	  = render 'student'
+	- else
+	  %p You have not been assigned to this cohort!

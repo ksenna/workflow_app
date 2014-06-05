@@ -3,7 +3,7 @@ class CohortsController < ApplicationController
 	def index
 		@cohorts = Cohort.all
 		@locations = Location.all 
-		@courses = Courses.all
+		@courses = Course.all
 	end
 
 	def new
@@ -20,7 +20,7 @@ class CohortsController < ApplicationController
 	end
 
 	def update
-		@cohort = Cohort.find(params[:id])
+		@cohort.update_attributes(cohort_params)
     if @cohort.update(cohort_params)
       redirect_to cohort_path, notice: "Your cohort was updated"
     else
@@ -28,8 +28,16 @@ class CohortsController < ApplicationController
     end
 	end
 
-	def show
+	# def show
+	def main
 		@cohort = Cohort.find(params[:id])
+		# if current_user.admin?
+		# 	render partial: "instructor"
+		# elsif @user.instructor?
+		# 	render partial: "instructor"
+		# else @user.student?
+		# 	render partial: "student"
+		# end
 	end
 
 	def destroy

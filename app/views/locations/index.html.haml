@@ -1,0 +1,10 @@
+%h3 Create a new location
+= form_for @location, url: locations_path, method: :post do |f|
+	= render "form", f:f
+%br
+
+- @locations.each do |l|
+	= link_to l.city
+	%br
+	= link_to l.state
+	%br

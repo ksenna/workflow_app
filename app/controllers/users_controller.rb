@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 	skip_filter :ensure_logged_in, only: [:new, :create]
 
+	def index
+		@users = User.all
+	end
+
 	def new
 		@new_user = User.new
 	end
@@ -23,13 +27,6 @@ class UsersController < ApplicationController
 
 	def dashboard
 		@user = current_user
-		if @user.admin?
-			render partial: "instructor"
-		elsif @user.instructor?
-			render partial: "instructor", layout: "../users/dashboard"
-		else @user.student?
-			render partial: "student", layout: "../users/dashboard"
-		end
 				
 		# @active_cohort = @user.cohort_id
 		# @all_cohorts = Cohort.includes(:users).where('@user.cohort_id = ?', '@cohort.id')

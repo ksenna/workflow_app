@@ -9,12 +9,12 @@
 		= f.date_field :end_date
 		%br
 		Select a Location:
-		= f.select :location_id, Location.all.collect {|location| [location.ref_name, location.id]}
+		= f.select :location_id, Location.all.collect {|location| [location.city, location.id]}
 		%br
 		Select a Course:
 		= f.select :course_id, Course.all.collect{|course| [course.name, course.id]}
 		%br
 		Select an Instructor:
-		= f.select :instructor_id, options_from_collection_for_select(@users, :id, :name, 2)
+		= f.select :instructor_id, User.all.collect{|user| [user.first_name, user.id]}
 		%br
 		= f.submit "Create Cohort"

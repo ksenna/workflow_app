@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users do
     get 'dashboard'
   end
+
+
   
   resources :sessions, only: [:new, :create, :destroy]
   
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :courses
   resources :cohorts
+  resources :admissions
 
   root 'users#index'
 

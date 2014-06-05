@@ -1,0 +1,8 @@
+.container
+	%h1 The #{@cohort.location.city} #{@cohort.course.name} Cohort Main Page
+	%br
+	%p Location: #{@cohort.location.city}, #{@cohort.location.state} 
+	%br
+	%p Start Date: #{@cohort.start_date}
+	%br
+	= yield

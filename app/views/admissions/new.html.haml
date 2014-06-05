@@ -1,0 +1,12 @@
+%h1 Join a cohort today!
+%br
+= form_for Admission.new, url: admissions_path, method: :post do |f|
+	= f.hidden_field :user_id, value: current_user.id
+	%br
+	- Cohort.all.each do |cohort|
+		= f.label "#{cohort.course.name}"
+		= f.label "#{cohort.location.city}"
+		= f.radio_button :cohort_id, cohort.id
+	%br
+	%br
+	= f.submit "Submit"

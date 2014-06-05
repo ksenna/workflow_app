@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	has_many :comments
 	has_many :assignments
 	has_many :submissions
+	has_many :admissions
 
 	belongs_to :cohort
 	belongs_to :role

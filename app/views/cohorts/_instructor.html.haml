@@ -1,32 +1,21 @@
-.container
-	%h1 The "#{@cohort.location.city}" "#{@cohort.course.name}" Cohort Main Page
-	%br
-	%p Location: #{@cohort.location.city}, #{@cohort.location.state} 
-	%br
-	%p Start Date: #{format_date(@cohort.start_date)}
-	%br
-	%br
-	%h3 Cohort Assignments
-	%br
-	%button.btn.btn-primary.btn-lg{"data-target" => "#new_assignment_modal", "data-toggle" => "modal"} Add An Assignment
-	%br
-	%br
-	- @cohort.assignments.each do |a|
-		- if a.nil?
-			%p You have no assignments
-		-else
-			= link_to a.title, a
-			%br
-			%p= a.description
-	%br
-	%br
-	%br
-	%h3 Cohort Students
-	%button.btn.btn-primary.btn-lg{"data-target" => "#new_student_modal", "data-toggle" => "modal"} Add A Student
-	%br
-	%br
-	- @enrolled_users.each do |user|
-		= link_to user.email, user_path
+%h3 Cohort Assignments
+%br
+%button.btn.btn-primary.btn-lg{"data-target" => "#new_assignment_modal", "data-toggle" => "modal"} Add An Assignment
+%br
+%br
+- @cohort.assignments.each do |a|
+	- if a.nil?
+		%p You have no assignments
+	-else
+		= link_to a.title, a
+		%br
+		%p= a.description
+%br
+%br
+%h3 Cohort Students
+%button.btn.btn-primary.btn-lg{"data-target" => "#new_student_modal", "data-toggle" => "modal"} Add A Student
+%br
+%br
 #new_assignment_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "new_assignment_modalLabel", :role => "dialog", :tabindex => "-1"}
 	.modal-dialog
 		.modal-content
