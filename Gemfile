@@ -18,6 +18,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'cancancan', '~> 1.8'
 
+gem 'omniauth-facebook'
+gem "koala", "~> 1.10.0rc"
+
 gem 'debugger', group: [:development, :test]
 
 group :test do 
