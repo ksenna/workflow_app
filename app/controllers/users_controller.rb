@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 	skip_filter :ensure_logged_in, only: [:new, :create]
 
 	def index
+		if current_user.admin?
+			render partial: "admin", layout: "index"
 		@users = User.all
 	end
 
@@ -11,10 +13,11 @@ class UsersController < ApplicationController
 
 	def create
 		@new_user = User.new(user_params)
+		@new_user.role = Role.find_by_name("student")
 		respond_to do |format|
 			if @new_user.save
 				UserMailer.welcome_email(@new_user).deliver
-				format.html { redirect_to 'users#home', notice: "You signed up!" }
+				format.html { redirect_to login_path, notice: "You signed up!" }
 				format.json { render json: @new_user, status: :created, location: @new_user }
 				# redirect_to login_path, notice: "You signed up!"
 			else

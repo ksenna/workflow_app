@@ -8,10 +8,10 @@ class Ability
     if user.admin?
       can :manage, :all
     if user.instructor?
-      can :manage, Assignments
+      can :manage, Assignment
     if user.student?
-      can :read, Assignments
-      can :manage, Submissions
+      can :read, Assignment
+      can :manage, Submission
     else
       can :read, :all
     end

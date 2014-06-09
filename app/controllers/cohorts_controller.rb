@@ -1,7 +1,11 @@
 class CohortsController < ApplicationController
 
 	def index
-		@cohorts = Cohort.all
+		if current_user.instructor?
+			@cohorts = current_user.taught_cohorts
+		else
+			@cohorts = current_user.cohorts
+		end
 		@locations = Location.all 
 		@courses = Course.all
 	end

@@ -5,6 +5,6 @@ class Assignment < ActiveRecord::Base
 	has_many :submissions
 	has_many :comments, as: :commentable, dependent: :destroy
 
-	scope :cohort_assignments, -> { where(:cohort_id => cohort.id) }
+	# scope :cohort_assignments, -> { where(:cohort_id => cohort.id) }
 
 end

@@ -15,6 +15,6 @@
 		= f.select :course_id, Course.all.collect{|course| [course.name, course.id]}
 		%br
 		Select an Instructor:
-		= f.select :instructor_id, User.all.collect{|user| [user.first_name, user.id]}
+		= f.select :instructor_id, User.instructors.collect{|user| [user.first_name, user.id]}
 		%br
 		= f.submit "Create Cohort"
