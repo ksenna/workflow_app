@@ -1,25 +1,28 @@
 class UsersController < ApplicationController
+	before_filter :authenticate_user!, only: [:edit, :update]
 	skip_filter :ensure_logged_in, only: [:new, :create]
+
 
 	def index
 		@users = User.all
 	end
 
 	def new
-		@new_user = User.new
+		@user = User.new
 	end
 
 	def create
-		@new_user = User.new(user_params)
+		@user = User.new(user_params)
 		respond_to do |format|
-			if @new_user.save
-				UserMailer.welcome_email(@new_user).deliver
+			if @user.save
+				UserMailer.welcome_email(@user).deliver
+				session[:user_id] = @user.id
 				format.html { redirect_to 'users#home', notice: "You signed up!" }
-				format.json { render json: @new_user, status: :created, location: @new_user }
+				format.json { render json: @user, status: :created, location: @user }
 				# redirect_to login_path, notice: "You signed up!"
 			else
 				format.html { render action: 'new', notice: "Registration failed." }
-				format.json { render json: @new_user.errors, status: :unprocessable_entity }
+				format.json { render json: @user.errors, status: :unprocessable_entity }
 				# render :new, notice: "Registration failed."
 			end
 		end

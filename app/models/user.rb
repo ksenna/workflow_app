@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	
-	has_secure_password
+	# has_secure_password
 
 	validates_presence_of :email
 	validates_uniqueness_of :email
@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	has_many :assignments
 	has_many :submissions
 	has_many :admissions
+	has_many :accounts, :dependent => :destroy
 
 	belongs_to :cohort
 	belongs_to :role

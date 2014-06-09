@@ -17,6 +17,8 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'cancancan', '~> 1.8'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'debugger', group: [:development, :test]
 

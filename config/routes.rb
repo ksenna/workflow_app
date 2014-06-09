@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     get 'dashboard'
   end
 
-
-  
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :assignments do
@@ -24,5 +22,9 @@ Rails.application.routes.draw do
   resources :admissions
 
   root 'users#index'
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
 
 end
